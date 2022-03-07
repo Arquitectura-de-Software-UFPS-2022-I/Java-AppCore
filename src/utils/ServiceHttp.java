@@ -39,19 +39,15 @@ public class ServiceHttp {
     static final String LINE_FEED = "\r\n";
     static final String BOUNDARY = "===***===";
 
-    public static <T> List<T> HttpGetList(String url, Class<T[]> type) {
+    public static <T> List<T> HttpGetList(String url, Class<T[]> type) throws Exception {
         String result = HttpGet(url);
         if (result != null) {
-            try {
-                return Arrays.asList(new Gson().fromJson(result, type));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            return Arrays.asList(new Gson().fromJson(result, type));
         }
         return null;
     }
 
-    public static <T> T HttpGetOne(String url, Class<T> type) {
+    public static <T> T HttpGetOne(String url, Class<T> type) throws Exception {
         String result = HttpGet(url);
         if (result != null) {
             return (T) new Gson().fromJson(result, type);
@@ -59,7 +55,7 @@ public class ServiceHttp {
         return null;
     }
 
-    public static String HttpGet(String url) {
+    public static String HttpGet(String url) throws Exception{
         try {
 
             HttpURLConnection conn = (HttpURLConnection) new URL(BASE + url).openConnection();
@@ -71,17 +67,18 @@ public class ServiceHttp {
                 br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             } else {
                 br = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+                throw new Exception(br.lines().collect(Collectors.joining()));
             }
 
             return br.lines().collect(Collectors.joining());
 
         } catch (IOException ex) {
             Logger.getLogger(ServiceHttp.class.getName()).log(Level.SEVERE, null, ex);
+            throw new Exception(ex.getMessage());
         }
-        return null;
     }
 
-    public static String HttpDelete(String url) {
+    public static String HttpDelete(String url) throws Exception {
         try {
 
             HttpURLConnection conn = (HttpURLConnection) new URL(BASE + url).openConnection();
@@ -94,25 +91,26 @@ public class ServiceHttp {
                 br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             } else {
                 br = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+                throw new Exception(br.lines().collect(Collectors.joining()));
             }
 
             return br.lines().collect(Collectors.joining());
 
         } catch (IOException ex) {
             Logger.getLogger(ServiceHttp.class.getName()).log(Level.SEVERE, null, ex);
+            throw new Exception(ex.getMessage());
         }
-        return null;
     }
 
-    public static String HttpPut(String url, String params) {
+    public static String HttpPut(String url, String params) throws Exception {
         return HttpPostOrPut(url, params, "PUT");
     }
 
-    public static String HttpPost(String url, String params) {
+    public static String HttpPost(String url, String params) throws Exception {
         return HttpPostOrPut(url, params, "POST");
     }
 
-    public static <T> T HttpPut(String url, Class<T> type, T model) {
+    public static <T> T HttpPut(String url, Class<T> type, T model) throws Exception {
         String params = model.toString();        
         String result = HttpPostOrPut(url, params, "PUT");
         
@@ -122,7 +120,7 @@ public class ServiceHttp {
         return null;
     }
 
-    public static <T> T HttpPost(String url, Class<T> type, T model) {
+    public static <T> T HttpPost(String url, Class<T> type, T model) throws Exception {
         String params = model.toString();        
         String result = HttpPostOrPut(url, params, "POST");
         if (result != null) {
@@ -131,7 +129,7 @@ public class ServiceHttp {
         return null;
     }
 
-    private static String HttpPostOrPut(String url, String params, String type) {
+    private static String HttpPostOrPut(String url, String params, String type) throws Exception {
         try {
 
             HttpURLConnection conn = (HttpURLConnection) new URL(BASE + url).openConnection();
@@ -149,17 +147,18 @@ public class ServiceHttp {
                 br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             } else {
                 br = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+                throw new Exception(br.lines().collect(Collectors.joining()));
             }
 
             return br.lines().collect(Collectors.joining());
 
         } catch (IOException ex) {
             Logger.getLogger(ServiceHttp.class.getName()).log(Level.SEVERE, null, ex);
+            throw new Exception(ex.getMessage());
         }
-        return null;
     }
 
-    public static FileDto HttpPost(String url, String name, File file) {
+    public static FileDto HttpPost(String url, String name, File file) throws Exception {
         try {
             HttpURLConnection conn = (HttpURLConnection) new URL(BASE + url).openConnection();
 
@@ -180,14 +179,15 @@ public class ServiceHttp {
                 br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             } else {
                 br = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+                throw new Exception(br.lines().collect(Collectors.joining()));
             }
 
             return new Gson().fromJson(br.lines().collect(Collectors.joining()), FileDto.class);
 
         } catch (IOException ex) {
             Logger.getLogger(ServiceHttp.class.getName()).log(Level.SEVERE, null, ex);
+            throw new Exception(ex.getMessage());
         }
-        return null;
     }
 
     private static void AddFormField(String name, String value, PrintWriter writer) {
