@@ -18,22 +18,22 @@ import utils.ServiceHttp;
 public class FileServiceImpl extends ServiceHttp implements FileService {
 
     @Override
-    public List<FileDto> getFiles() {
+    public List<FileDto> getFiles() throws Exception{
         return HttpGetList("/api/v1/files/?format=json", FileDto[].class);
     }
 
     @Override
-    public FileDto getFileId(int id) {
+    public FileDto getFileId(int id) throws Exception {
         return HttpGetOne("/api/v1/files/"+id+"/?format=json", FileDto.class);
     }
 
     @Override
-    public FileDto saveFile(String name, File file) {
+    public FileDto saveFile(String name, File file) throws Exception {
         return HttpPost("/api/v1/files/?format=json", name, file);
     }
 
     @Override
-    public void deleteFile(int id) {
+    public void deleteFile(int id) throws Exception {
         HttpDelete("/api/v1/files/"+id+"/");
     }
     

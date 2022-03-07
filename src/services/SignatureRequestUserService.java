@@ -15,18 +15,18 @@ import models.SignatureRequestUserDto;
  */
 public interface SignatureRequestUserService {
     
-    List<SignatureRequestUserDto> getRequest();
+    List<SignatureRequestUserDto> getRequest() throws Exception;
     
-    List<SignatureRequestUserDto> getRequestUser(int id);
+    List<SignatureRequestUserDto> getRequestUser(int id) throws Exception;
     
-    List<SignatureRequestUserDto> getRequest(int id);
+    List<SignatureRequestUserDto> getRequest(int id) throws Exception;
     
-    SignatureRequestUserDto getRequestId(int id);
+    SignatureRequestUserDto getRequestId(int id) throws Exception;
     
-    SignatureRequestUserDto saveRequest(SignatureRequestUserDto user);
+    SignatureRequestUserDto saveRequest(SignatureRequestUserDto user) throws Exception;
     
-    SignatureRequestUserDto updateRequest(SignatureRequestUserDto user);
+    SignatureRequestUserDto updateRequest(SignatureRequestUserDto user) throws Exception;
     
-    void deleteRequest(int id);
+    void deleteRequest(int id) throws Exception;
     
 }

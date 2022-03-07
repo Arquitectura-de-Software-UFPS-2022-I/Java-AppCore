@@ -15,12 +15,12 @@ import models.FileDto;
  */
 public interface FileService {
     
-    List<FileDto> getFiles();
+    List<FileDto> getFiles() throws Exception;
     
-    FileDto getFileId(int id);
+    FileDto getFileId(int id) throws Exception;
     
-    FileDto saveFile(String name, File file);
+    FileDto saveFile(String name, File file) throws Exception;
     
-    void deleteFile(int id);
+    void deleteFile(int id) throws Exception;
     
 }

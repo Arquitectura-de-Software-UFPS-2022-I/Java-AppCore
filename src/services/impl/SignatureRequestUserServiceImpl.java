@@ -17,37 +17,37 @@ import utils.ServiceHttp;
 public class SignatureRequestUserServiceImpl extends ServiceHttp implements SignatureRequestUserService{
 
     @Override
-    public List<SignatureRequestUserDto> getRequest() {
+    public List<SignatureRequestUserDto> getRequest() throws Exception {
         return HttpGetList("/api/v1/signature_request_users_by_user/?format=json", SignatureRequestUserDto[].class);
     }
 
     @Override
-    public List<SignatureRequestUserDto> getRequestUser(int id) {
+    public List<SignatureRequestUserDto> getRequestUser(int id) throws Exception {
         return HttpGetList("/api/v1/signature_request_users_by_user/"+id+"/?format=json", SignatureRequestUserDto[].class);
     }
 
     @Override
-    public List<SignatureRequestUserDto> getRequest(int id) {
+    public List<SignatureRequestUserDto> getRequest(int id) throws Exception {
         return HttpGetList("/api/v1/signature_request_users_by_request/"+id+"/?format=json", SignatureRequestUserDto[].class);
     }
 
     @Override
-    public SignatureRequestUserDto getRequestId(int id) {
+    public SignatureRequestUserDto getRequestId(int id) throws Exception {
         return HttpGetOne("/api/v1/signature_request_users/"+id+"/?format=json", SignatureRequestUserDto.class);
     }
 
     @Override
-    public SignatureRequestUserDto saveRequest(SignatureRequestUserDto user) {
+    public SignatureRequestUserDto saveRequest(SignatureRequestUserDto user) throws Exception {
         return HttpPut("/api/v1/signature_request_users/?format=json", SignatureRequestUserDto.class, user);
     }
 
     @Override
-    public SignatureRequestUserDto updateRequest(SignatureRequestUserDto user) {
+    public SignatureRequestUserDto updateRequest(SignatureRequestUserDto user) throws Exception {
         return HttpPut("/api/v1/signature_request_users/"+user.getId()+"/?format=json", SignatureRequestUserDto.class, user);
     }
 
     @Override
-    public void deleteRequest(int id) {
+    public void deleteRequest(int id) throws Exception {
         HttpDelete("/api/v1/signature_request_users/"+id+"/?format=json");
     }
     

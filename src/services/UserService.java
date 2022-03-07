@@ -14,16 +14,16 @@ import models.UserDto;
  */
 public interface UserService {
     
-    List<UserDto> getUser();
+    List<UserDto> getUser() throws Exception;
     
-    UserDto getUserId(int id);
+    UserDto getUserId(int id) throws Exception;
     
-    UserDto saveUser(UserDto user);
+    UserDto saveUser(UserDto user) throws Exception;
     
-    UserDto updateUser(UserDto user);
+    UserDto updateUser(UserDto user) throws Exception;
     
-    void deleteUser(int id);
+    void deleteUser(int id) throws Exception;
     
-    UserDto loginUser(String password, String username);
+    UserDto loginUser(String password, String username) throws Exception;
     
 }
