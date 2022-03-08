@@ -151,6 +151,7 @@ public class ServiceHttp {
             if (100 <= conn.getResponseCode() && conn.getResponseCode() <= 399) {
                 br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             } else {
+                System.out.println("parameters: "+ params);
                 br = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
                 throw new Exception(br.lines().collect(Collectors.joining()));
             }

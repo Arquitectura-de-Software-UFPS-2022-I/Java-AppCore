@@ -14,7 +14,7 @@ public class SignatureRequestDto {
     private int id;
     private String subject;
     private int document;
-    private int user;  
+    private int user;
     private String create_date;
 
     public int getId() {
@@ -56,13 +56,10 @@ public class SignatureRequestDto {
     public void setCreate_date(String create_date) {
         this.create_date = create_date;
     }
-    
-    
 
     @Override
     public String toString() {
-        return "{" + "\"id\":" + id + ", \"subject\":\"" + subject + "\", \"document\":" + document + ", user=" + user + ", \"create_date\":\"" + create_date + "\"}";
+        return "{\"id\":" + id + ", \"subject\":\"" + subject + "\", \"document\":" + document + ", \"user\":" + user + "}";
     }
-    
-    
+
 }

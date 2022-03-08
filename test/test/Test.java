@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import services.FileService;
 import services.UserService;
+import services.impl.ApiService;
 import services.impl.FileServiceImpl;
 import services.impl.UserServiceImpl;
 
@@ -19,11 +20,11 @@ import services.impl.UserServiceImpl;
  */
 public class Test {
     public static void main(String[] args) {
+        ApiService api = new ApiService();
         try {
-            FileService s = new FileServiceImpl();
-            System.out.println(s.validateAsignature(new File("C:\\Users\\USUARIO\\Desktop\\Firma_Yhojan_Díaz.jpg")));
-        } catch (Exception ex) {
-            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+            api.getUserService().getUserId(2);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         
     }

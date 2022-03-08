@@ -25,7 +25,7 @@ public class UserServiceImpl extends ServiceHttp implements UserService {
 
     @Override
     public UserDto getUserId(int id) throws Exception {
-        return HttpGetOne("/api/v1/users/?format=json", UserDto.class);
+        return HttpGetOne("/api/v1/users/"+id+"/?format=json", UserDto.class);
     }
 
     @Override

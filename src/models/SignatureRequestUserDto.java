@@ -92,14 +92,12 @@ public class SignatureRequestUserDto {
     public void setUser(int user) {
         this.user = user;
     }
-    
-    
 
     @Override
     public String toString() {
-        return "{" + "\"id\":" + id + ", \"pos_x\":" + pos_x + ", \"pos_y\":" +
-                pos_y + ", \"num_page\":" + num_page + ", \"signed\":" + signed 
-                + ", \"signature_date\":\"" + signature_date + "\", \"created_date\":\"" + created_date + ", \"request\":" + request + ", \"user\"" + user + '}';
+        return "{" + "\"id\":" + id + ", \"pos_x\":" + pos_x + ", \"pos_y\":"
+                + pos_y + ", \"num_page\":" + num_page + ", \"signed\":\"" + signed
+                + "\", \"request\":" + request + ", \"user\":" + user + '}';
     }
 
 }

@@ -38,7 +38,7 @@ public class SignatureRequestUserServiceImpl extends ServiceHttp implements Sign
 
     @Override
     public SignatureRequestUserDto saveRequest(SignatureRequestUserDto user) throws Exception {
-        return HttpPut("/api/v1/signature_request_users/?format=json", SignatureRequestUserDto.class, user);
+        return HttpPost("/api/v1/signature_request_users/?format=json", SignatureRequestUserDto.class, user);
     }
 
     @Override
