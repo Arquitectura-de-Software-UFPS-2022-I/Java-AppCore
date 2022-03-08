@@ -126,6 +126,14 @@ public class ServiceHttp {
         return null;
     }
 
+    public static <T> T HttpPost(String url, Class<T> type, String params) throws Exception {
+        String result = HttpPostOrPut(url, params, "POST");
+        if (result != null) {
+            return new Gson().fromJson(result, type);
+        }
+        return null;
+    }
+
     private static String HttpPostOrPut(String url, String params, String type) throws Exception {
         try {
 

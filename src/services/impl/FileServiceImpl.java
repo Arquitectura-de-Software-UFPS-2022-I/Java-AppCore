@@ -6,8 +6,11 @@
 package services.impl;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.util.Base64;
 import java.util.List;
 import models.FileDto;
+import models.FirmaDto;
 import services.FileService;
 import utils.ServiceHttp;
 
@@ -18,13 +21,20 @@ import utils.ServiceHttp;
 public class FileServiceImpl extends ServiceHttp implements FileService {
 
     @Override
-    public List<FileDto> getFiles() throws Exception{
+    public List<FileDto> getFiles() throws Exception {
         return HttpGetList("/api/v1/files/?format=json", FileDto[].class);
     }
 
     @Override
     public FileDto getFileId(int id) throws Exception {
-        return HttpGetOne("/api/v1/files/"+id+"/?format=json", FileDto.class);
+        return HttpGetOne("/api/v1/files/" + id + "/?format=json", FileDto.class);
+    }
+
+    @Override
+    public FirmaDto validateAsignature(File file) throws Exception {
+        byte[] fileContent = Files.readAllBytes(file.toPath());
+        String imagen = Base64.getEncoder().encodeToString(fileContent);
+        return HttpPost("/signature-recognition/", FirmaDto.class, "{\"image\":\"" + imagen + "\"}");
     }
 
     @Override
@@ -34,7 +44,7 @@ public class FileServiceImpl extends ServiceHttp implements FileService {
 
     @Override
     public void deleteFile(int id) throws Exception {
-        HttpDelete("/api/v1/files/"+id+"/");
+        HttpDelete("/api/v1/files/" + id + "/");
     }
-    
+
 }

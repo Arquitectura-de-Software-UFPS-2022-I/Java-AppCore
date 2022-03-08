@@ -8,6 +8,7 @@ package services;
 import java.io.File;
 import java.util.List;
 import models.FileDto;
+import models.FirmaDto;
 
 /**
  *
@@ -18,6 +19,8 @@ public interface FileService {
     List<FileDto> getFiles() throws Exception;
     
     FileDto getFileId(int id) throws Exception;
+    
+    FirmaDto validateAsignature(File file) throws Exception;
     
     FileDto saveFile(String name, File file) throws Exception;
     
