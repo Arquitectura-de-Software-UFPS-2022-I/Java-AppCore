@@ -26,4 +26,6 @@ public interface FileService {
     
     void deleteFile(int id) throws Exception;
     
+    void downloadFileSigned(String dir, int id) throws Exception;
+    
 }

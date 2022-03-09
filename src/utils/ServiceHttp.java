@@ -32,7 +32,7 @@ import models.FileDto;
 public class ServiceHttp {
 
     static final ResourceBundle RB = ResourceBundle.getBundle("resources.parametros");
-    static final String BASE = RB.getString("BASE");
+    public static final String BASE = RB.getString("BASE");
     static final String LINE_FEED = "\r\n";
     static final String BOUNDARY = "===***===";
 

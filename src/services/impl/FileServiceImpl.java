@@ -6,6 +6,10 @@
 package services.impl;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.net.URL;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
 import java.nio.file.Files;
 import java.util.Base64;
 import java.util.List;
@@ -45,6 +49,14 @@ public class FileServiceImpl extends ServiceHttp implements FileService {
     @Override
     public void deleteFile(int id) throws Exception {
         HttpDelete("/api/v1/files/" + id + "/");
+    }
+
+    @Override
+    public void downloadFileSigned(String dir, int id) throws Exception {
+        URL website = new URL(BASE + "/api/v1/generate_pdf/" + id);
+        ReadableByteChannel rbc = Channels.newChannel(website.openStream());
+        FileOutputStream fos = new FileOutputStream(dir + "/document_" + id + ".pdf");
+        fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
     }
 
 }
