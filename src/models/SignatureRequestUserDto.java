@@ -101,12 +101,21 @@ public class SignatureRequestUserDto {
                 + pos_y + ", \"num_page\":" + num_page + ", \"signed\":\"" + signed
                 + "\", \"request\":" + request + ", \"user\":" + user + '}';
     }
-    
-     public UserDto getUserDto() {
-        UserDto model = null;
+
+    public UserDto getUserDto() {
         try {
             if (user != 0) {
                 return new ApiService().getUserService().getUserId(user);
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
+    public SignatureRequestDto getRequestDto() {
+        try {
+            if (request != 0) {
+                return new ApiService().getSignatureRequestService().getRequestId(request);
             }
         } catch (Exception e) {
         }
