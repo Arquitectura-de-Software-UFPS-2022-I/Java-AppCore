@@ -5,6 +5,10 @@
  */
 package models;
 
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.PdfReader;
+import java.util.Map;
+
 /**
  *
  * @author USUARIO
@@ -16,7 +20,7 @@ public class FileDto {
     private String uuid_image;
     private String file;
     private String create_date;
-
+    
     public int getId() {
         return id;
     }
@@ -60,6 +64,22 @@ public class FileDto {
     @Override
     public String toString() {
         return "{" + "\"id\":" + id + ", \"name\":\"" + name + "\", \"uuid_image\":\"" + uuid_image + "\", \"file\":\"" + file + "\", \"create_date\":\"" + create_date + "\"}";
+    }
+    
+    public int[][] getDimensionsPdf() {
+        int[][] dimensions = null;
+        try {            
+            PdfReader reader = new PdfReader(file);
+            dimensions = new int[reader.getNumberOfPages()][];
+            
+            Rectangle rectangle;
+            for (int i = 0; i < dimensions.length; i++) {
+                rectangle = reader.getPageSize(i+1);
+                dimensions[i] = new int[]{(int) rectangle.getWidth(), (int) rectangle.getHeight()};
+            }
+        } catch (Exception e) {
+        }        
+        return dimensions;
     }
 
 }
