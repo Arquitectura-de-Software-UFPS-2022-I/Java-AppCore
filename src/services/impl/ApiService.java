@@ -5,6 +5,7 @@
  */
 package services.impl;
 
+import java.util.ResourceBundle;
 import services.FileService;
 import services.SignatureRequestService;
 import services.SignatureRequestUserService;
@@ -15,7 +16,10 @@ import services.UserService;
  * @author USUARIO
  */
 public class ApiService {
-    
+
+    static final ResourceBundle RB = ResourceBundle.getBundle("resources.parametros");
+    static final String BASE = RB.getString("BASE");
+
     private final FileService fileService;
     private final SignatureRequestService signatureRequestService;
     private final SignatureRequestUserService signatureRequestUser;
@@ -43,9 +47,9 @@ public class ApiService {
     public UserService getUserService() {
         return userService;
     }
-    
-    
-    
-    
-    
+
+    public String baseUrl() {
+        return BASE;
+    }
+
 }
