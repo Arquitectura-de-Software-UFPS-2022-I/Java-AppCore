@@ -18,7 +18,7 @@ public class SignatureRequestUserServiceImpl extends ServiceHttp implements Sign
 
     @Override
     public List<SignatureRequestUserDto> getRequest() throws Exception {
-        return HttpGetList("/api/v1/signature_request_users_by_user/?format=json", SignatureRequestUserDto[].class);
+        return HttpGetList("/api/v1/signature_request_users/?format=json", SignatureRequestUserDto[].class);
     }
 
     @Override

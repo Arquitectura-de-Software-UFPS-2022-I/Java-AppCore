@@ -5,6 +5,8 @@
  */
 package models;
 
+import services.impl.ApiService;
+
 /**
  *
  * @author USUARIO
@@ -60,6 +62,17 @@ public class SignatureRequestDto {
     @Override
     public String toString() {
         return "{\"id\":" + id + ", \"subject\":\"" + subject + "\", \"document\":" + document + ", \"user\":" + user + "}";
+    }
+
+    public FileDto getDocumentDto() {
+        FileDto file = null;
+        try {
+            if (document != 0) {
+                return new ApiService().getFileService().getFileId(document);
+            }
+        } catch (Exception e) {
+        }
+        return null;
     }
 
 }

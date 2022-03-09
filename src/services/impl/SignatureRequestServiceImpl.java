@@ -18,7 +18,7 @@ public class SignatureRequestServiceImpl extends ServiceHttp implements Signatur
 
     @Override
     public List<SignatureRequestDto> getRequest() throws Exception {
-        return HttpGetList("/api/v1/files/?format=json", SignatureRequestDto[].class);
+        return HttpGetList("/api/v1/signature_requests/?format=json", SignatureRequestDto[].class);
     }
     
     @Override

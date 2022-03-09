@@ -5,6 +5,8 @@
  */
 package models;
 
+import services.impl.ApiService;
+
 /**
  *
  * @author USUARIO
@@ -98,6 +100,17 @@ public class SignatureRequestUserDto {
         return "{" + "\"id\":" + id + ", \"pos_x\":" + pos_x + ", \"pos_y\":"
                 + pos_y + ", \"num_page\":" + num_page + ", \"signed\":\"" + signed
                 + "\", \"request\":" + request + ", \"user\":" + user + '}';
+    }
+    
+     public UserDto getUserDto() {
+        UserDto model = null;
+        try {
+            if (user != 0) {
+                return new ApiService().getUserService().getUserId(user);
+            }
+        } catch (Exception e) {
+        }
+        return null;
     }
 
 }

@@ -8,6 +8,8 @@ package test;
 import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import models.SignatureRequestDto;
+import models.SignatureRequestUserDto;
 import services.FileService;
 import services.UserService;
 import services.impl.ApiService;
@@ -22,7 +24,9 @@ public class Test {
     public static void main(String[] args) {
         ApiService api = new ApiService();
         try {
-            api.getUserService().getUserId(2);
+            for (SignatureRequestUserDto signatureRequestDto : api.getSignatureRequestUser().getRequest()) {
+                System.out.println(signatureRequestDto.getUserDto());
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
