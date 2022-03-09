@@ -65,7 +65,6 @@ public class SignatureRequestDto {
     }
 
     public FileDto getDocumentDto() {
-        FileDto file = null;
         try {
             if (document != 0) {
                 return new ApiService().getFileService().getFileId(document);

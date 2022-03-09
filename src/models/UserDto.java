@@ -5,6 +5,8 @@
  */
 package models;
 
+import services.impl.ApiService;
+
 /**
  *
  * @author USUARIO
@@ -72,6 +74,16 @@ public class UserDto {
                 + "\", \"username\":\"" + username + "\", \"email\":\"" + email
                 + "\", \"password\":\"" + password + "\", \"signature\":"
                 + signature + "}";
+    }
+
+    public FileDto getSignatureDto() {
+        try {
+            if (signature != 0) {
+                return new ApiService().getFileService().getFileId(signature);
+            }
+        } catch (Exception e) {
+        }
+        return null;
     }
 
 }
